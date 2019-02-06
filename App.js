@@ -3,13 +3,14 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Landing from "./components/Landing";
 import PracticeCard from "./components/PracticeCard";
+import Main from "./components/Main";
 
 export default class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      user: undefined
+      user: "friend"
     };
   }
 
@@ -20,6 +21,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {!this.state.user && <Landing setUser={this.setUser} />}
+        {this.state.user && <Main />}
       </View>
     );
   }
@@ -28,7 +30,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#2c3753",
     alignItems: "center"
   }
 });
