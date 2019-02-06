@@ -5,7 +5,8 @@ import {
   ScrollView,
   Text,
   TextInput,
-  Button
+  Button,
+  TouchableOpacity
 } from "react-native";
 
 import NewSection from "./NewSection";
@@ -75,7 +76,9 @@ export default class PracticeCard extends Component {
             placeholder="Practice session goals"
             value={this.state.goals}
           />
-          <Button onPress={() => {}} title="Submit Practice Session" />
+          <TouchableOpacity style={styles.button} onPress={this.submitSection}>
+            <Text style={styles.submit}>Submit Practice Record</Text>
+          </TouchableOpacity>
         </View>
         <NewSection addNewSection={this.addNewSection} />
         <Text style={[styles.text, styles.sectionHeader]}>Songs Practiced</Text>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
     marginBottom: 30,
     textAlign: "center",
@@ -104,12 +107,14 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 16,
     marginBottom: 16,
-    fontSize: 20
+    fontSize: 20,
+    backgroundColor: "#3e496c",
+    padding: 4
   },
   text: {
     fontSize: 20,
     fontFamily: "Malayalam Sangam MN",
-    color: "#8995b7",
+    color: "#d5d7de",
     textAlign: "center"
   },
   sectionHeader: {
@@ -117,5 +122,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingTop: 16,
     color: "#d5d7de"
+  },
+  submit: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 18,
+    textAlign: "center",
+    color: "#d5d7de",
+    fontWeight: "bold",
+    paddingTop: 8
+  },
+  button: {
+    backgroundColor: "#8995b7",
+    width: 220,
+    paddingBottom: 4,
+    borderRadius: 20,
+    alignSelf: "center"
   }
 });

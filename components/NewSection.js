@@ -122,7 +122,9 @@ export default class NewSection extends Component {
           placeholderTextColor="#8995b7"
         />
 
-        <Button title="Add Section" onPress={this.submitSection} />
+        <TouchableOpacity style={styles.button} onPress={this.submitSection}>
+          <Text style={styles.submit}>Add Song</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -134,12 +136,18 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#3e496c",
     width: width,
-    padding: 16
+    padding: 16,
+    shadowColor: "#333",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 5
   },
   input: {
     color: "#d5d7de",
     fontSize: 20,
-    paddingTop: 8
+    marginTop: 8,
+    backgroundColor: "#2c3753",
+    padding: 4
   },
   timeWrapper: {
     paddingTop: 8
@@ -158,5 +166,21 @@ const styles = StyleSheet.create({
     color: "#d5d7de",
     fontSize: 20,
     fontWeight: "bold"
+  },
+  submit: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 18,
+    textAlign: "center",
+    color: "#d5d7de",
+    fontWeight: "bold",
+    paddingTop: 8
+  },
+  button: {
+    backgroundColor: "#8995b7",
+    width: 220,
+    paddingBottom: 4,
+    borderRadius: 20,
+    alignSelf: "center",
+    marginTop: 16
   }
 });
