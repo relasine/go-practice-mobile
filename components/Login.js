@@ -71,23 +71,27 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          onChangeText={text => this.handleEmailPress(text)}
-          style={styles.input}
-          placeholder="email"
-          value={this.state.email}
-          textContentType="emailAddress"
-          autoCapitalize="none"
-        />
-        <TextInput
-          onChangeText={text => this.handlePasswordPress(text)}
-          style={[styles.input, styles.bottomInput]}
-          placeholder="password"
-          value={this.state.password}
-          textContentType="password"
-          secureTextEntry={true}
-          autoCapitalize="none"
-        />
+        <View style={styles.inputWrapper}>
+          <TextInput
+            onChangeText={text => this.handleEmailPress(text)}
+            style={styles.input}
+            placeholder="email"
+            value={this.state.email}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+        </View>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            onChangeText={text => this.handlePasswordPress(text)}
+            style={[styles.input, styles.bottomInput]}
+            placeholder="password"
+            value={this.state.password}
+            textContentType="password"
+            secureTextEntry={true}
+            autoCapitalize="none"
+          />
+        </View>
         <Button title="Login" onPress={this.handleLogin} />
       </View>
     );
@@ -99,11 +103,14 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 10,
     width: 200,
-    backgroundColor: "#d9d9d9",
+    backgroundColor: "#2c3753",
     height: 26,
     paddingLeft: 8
   },
   bottomInput: {
     marginBottom: 20
+  },
+  inputWrapper: {
+    backgroundColor: "white"
   }
 });
