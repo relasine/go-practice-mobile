@@ -26,8 +26,12 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.currentPage === "records" && <Records />}
-        {this.state.currentPage === "practice card" && <PracticeCard />}
+        {this.state.currentPage === "records" && (
+          <Records user={this.props.user} />
+        )}
+        {this.state.currentPage === "practice card" && (
+          <PracticeCard userId={this.props.user.student.id} />
+        )}
         {this.state.currentPage === "settings" && <Settings />}
         <Nav navigate={this.navigate} />
       </View>
