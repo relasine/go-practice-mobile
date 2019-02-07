@@ -9,6 +9,8 @@ import {
   TouchableOpacity
 } from "react-native";
 
+import { addPracticeCard } from "../utilities/fetchCalls";
+
 import NewSection from "./NewSection";
 import DatePicker from "./DatePicker";
 import Section from "./Section";
@@ -23,17 +25,20 @@ export default class PracticeCard extends Component {
           id: 1549427088449,
           piece: "#42 Jim Along Josie",
           section: "First half",
-          skill: "Eight Note Rhythm",
-          time: "12"
+          skills: "Eight Note Rhythm",
+          length: "12"
         }
       ],
-      goals: "",
-      date: ""
+      nextGoal: "",
+      date: "",
+      fetching: false,
+      missingFields: false,
+      response: undefined
     };
   }
 
-  handleGoalPress = goals => {
-    this.setState({ goals });
+  handleGoalPress = nextGoal => {
+    this.setState({ nextGoal });
   };
 
   addNewSection = section => {
@@ -57,9 +62,59 @@ export default class PracticeCard extends Component {
     });
   };
 
+  submitPracticeCard = async () => {
+    const { fetching, sections, nextGoal, date } = this.state;
+    if (fetching) {
+      return;
+    }
+
+    if (sections.length === 0 || !nextGoal || !date) {
+      console.log(`missing fields`);
+      this.setMissingFields();
+      return;
+    }
+
+    this.setFetching();
+
+    const payload = {
+      sections,
+      nextGoal,
+      date
+    };
+
+    try {
+      console.log("fetching...");
+      const response = await addPracticeCard(payload, this.props.userId);
+
+      this.setState({
+        response,
+        fetching: false
+      });
+
+      console.log(response);
+    } catch (error) {
+      this.setState({
+        error
+      });
+    }
+  };
+
+  setFetching = () => {
+    this.setState({
+      fetching: true,
+      missingFields: false
+    });
+  };
+
+  setMissingFields = () => {
+    this.setState({
+      missingFields: !this.state.missingFields
+    });
+  };
+
   render() {
     const totalTime = this.state.sections.reduce((sum, section) => {
-      return sum + parseInt(section.time);
+      return sum + parseInt(section.length);
     }, 0);
 
     const practiceSections = this.state.sections.map((section, index) => {
@@ -82,10 +137,13 @@ export default class PracticeCard extends Component {
             placeholderTextColor="#8995b7"
             onChangeText={text => this.handleGoalPress(text)}
             style={styles.input}
-            placeholder="Practice session goals"
-            value={this.state.goals}
+            placeholder="future practice goals"
+            value={this.state.nextGoal}
           />
-          <TouchableOpacity style={styles.button} onPress={this.submitSection}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.submitPracticeCard}
+          >
             <Text style={styles.submit}>Submit Practice Record</Text>
           </TouchableOpacity>
         </View>
@@ -114,11 +172,11 @@ const styles = StyleSheet.create({
     padding: 16
   },
   input: {
-    marginTop: 16,
-    marginBottom: 16,
+    marginBottom: 24,
     fontSize: 20,
     backgroundColor: "#3e496c",
-    padding: 4
+    padding: 4,
+    color: "#d5d7de"
   },
   text: {
     fontSize: 20,
