@@ -17,27 +17,27 @@ export default class NewSection extends Component {
     this.state = {
       piece: "",
       section: "",
-      skill: "",
-      time: "",
+      skills: "",
+      length: "",
       incomplete: false
     };
   }
 
   submitSection = () => {
-    const { piece, section, skill, time } = this.state;
+    const { piece, section, skills, length } = this.state;
 
-    if (!piece || !section || !skill || !time) {
+    if (!piece || !section || !skills || !length) {
       this.setState({
         incomplete: true
       });
     } else {
-      const newSection = { piece, section, skill, time, id: Date.now() };
+      const newSection = { piece, section, skills, length, id: Date.now() };
       this.props.addNewSection(newSection);
       this.setState({
         piece: "",
         section: "",
-        skill: "",
-        time: "",
+        skills: "",
+        length: "",
         incomplete: false,
         showDial: false
       });
@@ -51,10 +51,10 @@ export default class NewSection extends Component {
     });
   };
 
-  handleSkillPress = text => {
+  handleSkillsPress = text => {
     this.setState({
       incomplete: false,
-      skill: text
+      skills: text
     });
   };
 
@@ -65,10 +65,10 @@ export default class NewSection extends Component {
     });
   };
 
-  handleTimePress = time => {
+  handlelengthPress = length => {
     this.setState({
       incomplete: false,
-      time
+      length
     });
   };
 
@@ -108,16 +108,16 @@ export default class NewSection extends Component {
         />
         <TextInput
           style={styles.input}
-          placeholder="skill focused on"
-          onChangeText={text => this.handleSkillPress(text)}
-          value={this.state.skill}
+          placeholder="skills focused on"
+          onChangeText={text => this.handleSkillsPress(text)}
+          value={this.state.skills}
           placeholderTextColor="#8995b7"
         />
         <TextInput
           style={styles.input}
-          placeholder="time spent practicing"
-          onChangeText={text => this.handleTimePress(text)}
-          value={this.state.time.toString()}
+          placeholder="length spent practicing"
+          onChangeText={text => this.handlelengthPress(text)}
+          value={this.state.length.toString()}
           keyboardType="number-pad"
           placeholderTextColor="#8995b7"
         />
@@ -149,15 +149,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#2c3753",
     padding: 4
   },
-  timeWrapper: {
+  lengthWrapper: {
     paddingTop: 8
   },
-  timeLabel: {
+  lengthLabel: {
     color: "#d5d7de",
     fontSize: 20,
     fontWeight: "bold"
   },
-  time: {
+  length: {
     color: "#d5d7de",
     fontSize: 20,
     paddingBottom: 8
