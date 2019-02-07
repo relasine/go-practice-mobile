@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super();
 
     this.state = {
-      user: "friend"
+      user: undefined
     };
   }
 
@@ -21,7 +21,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {!this.state.user && <Landing setUser={this.setUser} />}
-        {this.state.user && <Main />}
+        {this.state.user && <Main user={this.state.user} />}
       </View>
     );
   }
