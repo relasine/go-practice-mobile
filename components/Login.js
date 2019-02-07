@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
-import { View, TextInput, StyleSheet, Text, Button } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity
+} from "react-native";
 
 import fetchCalls, { studentLogin } from "../utilities/fetchCalls";
 
@@ -71,28 +78,26 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            onChangeText={text => this.handleEmailPress(text)}
-            style={styles.input}
-            placeholder="email"
-            value={this.state.email}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
-        </View>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            onChangeText={text => this.handlePasswordPress(text)}
-            style={[styles.input, styles.bottomInput]}
-            placeholder="password"
-            value={this.state.password}
-            textContentType="password"
-            secureTextEntry={true}
-            autoCapitalize="none"
-          />
-        </View>
-        <Button title="Login" onPress={this.handleLogin} />
+        <TextInput
+          onChangeText={text => this.handleEmailPress(text)}
+          style={styles.input}
+          placeholder="email"
+          value={this.state.email}
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
+        <TextInput
+          onChangeText={text => this.handlePasswordPress(text)}
+          style={[styles.input, styles.bottomInput]}
+          placeholder="password"
+          value={this.state.password}
+          textContentType="password"
+          secureTextEntry={true}
+          autoCapitalize="none"
+        />
+        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+          <Text style={styles.submit}>Login</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -103,14 +108,27 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 10,
     width: 200,
-    backgroundColor: "#2c3753",
+    backgroundColor: "#d5d5d5",
     height: 26,
     paddingLeft: 8
   },
   bottomInput: {
     marginBottom: 20
   },
-  inputWrapper: {
-    backgroundColor: "white"
+  button: {
+    backgroundColor: "#8995b7",
+    width: 100,
+    paddingBottom: 4,
+    borderRadius: 20,
+    alignSelf: "center",
+    marginTop: 16
+  },
+  submit: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 18,
+    textAlign: "center",
+    color: "#d5d7de",
+    fontWeight: "bold",
+    paddingTop: 8
   }
 });
