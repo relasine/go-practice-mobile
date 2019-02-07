@@ -10,7 +10,7 @@ import {
 
 export default class Section extends Component {
   render() {
-    const { piece, section, skill, time, id } = this.props.data;
+    const { piece, section, skill, length, id } = this.props.data;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{piece}</Text>
@@ -21,7 +21,8 @@ export default class Section extends Component {
           <Text style={styles.labels}>Skill developed:</Text> {skill}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.labels}>Time spent practing:</Text> {time} minutes
+          <Text style={styles.labels}>Time spent practing:</Text> {length}{" "}
+          minutes
         </Text>
         <TouchableOpacity
           style={styles.button}
