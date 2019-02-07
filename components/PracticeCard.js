@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import NewSection from "./NewSection";
+import DatePicker from "./DatePicker";
 import Section from "./Section";
 
 export default class PracticeCard extends Component {
@@ -26,7 +27,8 @@ export default class PracticeCard extends Component {
           time: "12"
         }
       ],
-      goals: ""
+      goals: "",
+      date: ""
     };
   }
 
@@ -46,6 +48,12 @@ export default class PracticeCard extends Component {
     });
     this.setState({
       sections: newSections
+    });
+  };
+
+  setDate = date => {
+    this.setState({
+      date
     });
   };
 
@@ -69,6 +77,7 @@ export default class PracticeCard extends Component {
         <View style={styles.practiceCardTop}>
           <Text style={styles.headerText}>New Practice Record</Text>
           <Text style={styles.text}>Total Time - {totalTime} minutes</Text>
+          <DatePicker setDate={this.setDate} />
           <TextInput
             placeholderTextColor="#8995b7"
             onChangeText={text => this.handleGoalPress(text)}
