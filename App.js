@@ -5,14 +5,28 @@ import Landing from "./components/Landing";
 import PracticeCard from "./components/PracticeCard";
 import Main from "./components/Main";
 
+import { fetchStudentData } from "./utilities/fetchCalls";
+
 export default class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      user: undefined
+      user: undefined,
+      error: true
     };
   }
+
+  updateUser = async () => {
+    try {
+      const user = await fetchStudentData(this.state.user.student.id);
+
+      this.setState({ user, error: false });
+    } catch (error) {
+      this.setState({ error: true });
+      console.log(error);
+    }
+  };
 
   setUser = user => {
     this.setState({ user });
@@ -21,7 +35,9 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {!this.state.user && <Landing setUser={this.setUser} />}
-        {this.state.user && <Main user={this.state.user} />}
+        {this.state.user && (
+          <Main updateUser={this.updateUser} user={this.state.user} />
+        )}
       </View>
     );
   }
