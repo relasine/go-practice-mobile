@@ -11,7 +11,7 @@ export default class Main extends Component {
     super();
 
     this.state = {
-      currentPage: "practice card"
+      currentPage: "records"
     };
   }
 
@@ -27,10 +27,13 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         {this.state.currentPage === "records" && (
-          <Records user={this.props.user} />
+          <Records user={this.props.user} updateUser={this.props.updateUser} />
         )}
         {this.state.currentPage === "practice card" && (
-          <PracticeCard userId={this.props.user.student.id} />
+          <PracticeCard
+            updateUser={this.props.updateUser}
+            userId={this.props.user.student.id}
+          />
         )}
         {this.state.currentPage === "settings" && <Settings />}
         <Nav navigate={this.navigate} />
