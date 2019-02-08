@@ -30,10 +30,11 @@ export default class PracticeCard extends Component {
         }
       ],
       nextGoal: "",
-      date: "",
+      date: new Date(),
       fetching: false,
       missingFields: false,
-      response: undefined
+      response: undefined,
+      success: false
     };
   }
 
@@ -69,7 +70,6 @@ export default class PracticeCard extends Component {
     }
 
     if (sections.length === 0 || !nextGoal || !date) {
-      console.log(`missing fields`);
       this.setMissingFields();
       return;
     }
@@ -83,15 +83,19 @@ export default class PracticeCard extends Component {
     };
 
     try {
-      console.log("fetching...");
       const response = await addPracticeCard(payload, this.props.userId);
 
       this.setState({
-        response,
-        fetching: false
+        sections: [],
+        nextGoal: "",
+        date: new Date(),
+        fetching: false,
+        missingFields: false,
+        response: undefined,
+        success: true
       });
 
-      console.log(response);
+      this.props.updateUser();
     } catch (error) {
       this.setState({
         error
