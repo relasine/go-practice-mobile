@@ -19,7 +19,7 @@ export const studentLogin = async payload => {
 };
 
 export const fetchStudentData = async id => {
-  const response = await fetch(`http://localhost:3000/students/${id}`);
+  const response = await fetch(`http://localhost:3000/api/v1/students/${id}`);
 
   return await response.json();
 };
@@ -36,6 +36,30 @@ export const addPracticeCard = async (payload, id) => {
 
   const response = await fetch(
     `http://localhost:3000/api/v1/students/${id}/practice`,
+    requestBody
+  );
+
+  return await response.json();
+};
+
+export const getSessionDetails = async id => {
+  const response = await fetch(
+    `http://localhost:3000/api/v1/practiceSessions/${id}/sections`
+  );
+
+  return await response.json();
+};
+
+export const removeSession = async id => {
+  const requestBody = {
+    method: "DELETE",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const response = await fetch(
+    `http://localhost:3000/api/v1/practiceSessions/${id}`,
     requestBody
   );
 
