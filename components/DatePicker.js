@@ -18,6 +18,10 @@ export default class DatePicker extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    this.props.setDate(new Date());
+  }
+
   render() {
     const months = [
       "",
@@ -41,11 +45,7 @@ export default class DatePicker extends Component {
         style={styles.container}
         renderDate={({ year, month, day, date }) => {
           if (!date) {
-            return (
-              <Text style={[styles.text, styles.placeholderText]}>
-                Set practice date
-              </Text>
-            );
+            return <Text style={[styles.text]}>Select practice date</Text>;
           }
 
           const dateStr = `${months[parseInt(month)]} ${day}, ${year}`;
