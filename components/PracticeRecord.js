@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default class PracticeRecord extends Component {
   render() {
-    const { nextGoal, date, totalTime } = this.props.data;
+    const { nextGoal, date, totalTime, id } = this.props.data;
     const splitDate = date.split("-");
 
     const months = [
-      "",
       "January",
       "February",
       "March",
@@ -22,22 +21,25 @@ export default class PracticeRecord extends Component {
       "December"
     ];
 
-    console.log(splitDate[0]);
-
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          <Text style={styles.label}>Date: </Text>
-          {months[parseInt(splitDate[0])]} {splitDate[1]}, {splitDate[2]}
-        </Text>
-        <Text style={styles.text}>
-          <Text style={styles.label}>Practice time: </Text>
-          {totalTime} minutes
-        </Text>
-        <Text style={styles.text}>
-          <Text style={styles.label}>Goal: </Text>
-          {nextGoal}
-        </Text>
+        <TouchableOpacity
+          onPress={() => this.props.getDetails(this.props.data)}
+        >
+          <Text style={styles.text}>
+            <Text style={styles.label}>Date: </Text>
+            {months[parseInt(splitDate[1]) - 1]} {parseInt(splitDate[2]) + 1},{" "}
+            {splitDate[0]}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.label}>Practice time: </Text>
+            {totalTime} minutes
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.label}>Goal: </Text>
+            {nextGoal}
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
