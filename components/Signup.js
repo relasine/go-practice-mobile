@@ -7,6 +7,8 @@ import {
   StyleSheet
 } from "react-native";
 
+import { studentSignup } from "../utilities/fetchCalls";
+
 export default class Signup extends Component {
   constructor() {
     super();
@@ -67,7 +69,46 @@ export default class Signup extends Component {
     });
   };
 
-  handleSignup = () => {};
+  handleSignup = () => {
+    const { email, name, password, confirmPassword } = this.state;
+    if (!email || !name || !password || !confirmPassword) {
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      this.setState({
+        notMatching: true
+      });
+      return;
+    }
+
+    const payload = {
+      email,
+      name,
+      password
+    };
+
+    this.fetchSignup(payload);
+  };
+
+  fetchSignup = async payload => {
+    this.setFetching();
+    try {
+      const response = await studentSignup(payload);
+
+      console.log(response);
+      this.setState({
+        email: "",
+        name: "",
+        password: "",
+        confirmPassword: "",
+        error: false,
+        fetching: false
+      });
+    } catch (error) {
+      this.setState(error);
+    }
+  };
 
   handleLogin = () => {
     this.props.navigate("login");
@@ -108,7 +149,7 @@ export default class Signup extends Component {
           secureTextEntry={true}
           autoCapitalize="none"
         />
-        <TouchableOpacity style={styles.button} onPress={this.handleSingup}>
+        <TouchableOpacity style={styles.button} onPress={this.handleSignup}>
           <Text style={styles.submit}>Signup</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
