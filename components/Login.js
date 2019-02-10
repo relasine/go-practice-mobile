@@ -75,6 +75,10 @@ export default class Login extends Component {
     this.setState({ fetching: true, error: false });
   };
 
+  handleSignup = () => {
+    this.props.navigate("signup");
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -97,6 +101,9 @@ export default class Login extends Component {
         />
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
           <Text style={styles.submit}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={this.handleSignup}>
+          <Text style={styles.signup}>Signup</Text>
         </TouchableOpacity>
       </View>
     );
@@ -121,9 +128,18 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     borderRadius: 20,
     alignSelf: "center",
-    marginTop: 16
+    marginTop: 8,
+    marginBottom: 32
   },
   submit: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 18,
+    textAlign: "center",
+    color: "#d5d7de",
+    fontWeight: "bold",
+    paddingTop: 8
+  },
+  signup: {
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
