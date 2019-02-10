@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 
 import Login from "./Login";
+import Signup from "./Signup";
 
 export default class Landing extends Component {
   constructor() {
@@ -23,9 +24,11 @@ export default class Landing extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>Go Practice!</Text>
         {this.state.activePage === "login" && (
-          <Login navitage={this.navigate} setUser={this.props.setUser} />
+          <Login navigate={this.navigate} setUser={this.props.setUser} />
         )}
-        {this.state.activePage === "signup" && <View />}
+        {this.state.activePage === "signup" && (
+          <Signup navigate={this.navigate} />
+        )}
       </View>
     );
   }
