@@ -141,7 +141,7 @@ export default class PracticeCard extends Component {
             placeholderTextColor="#8995b7"
             onChangeText={text => this.handleGoalPress(text)}
             style={styles.input}
-            placeholder="future practice goals"
+            placeholder="Practice goals"
             value={this.state.nextGoal}
           />
           <TouchableOpacity
