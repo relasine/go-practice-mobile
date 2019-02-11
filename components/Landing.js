@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, Button } from "react-native";
 
 import Login from "./Login";
 import Signup from "./Signup";
+import ResetPassword from "./ResetPassword";
 
 export default class Landing extends Component {
   constructor() {
@@ -28,6 +29,9 @@ export default class Landing extends Component {
         )}
         {this.state.activePage === "signup" && (
           <Signup navigate={this.navigate} />
+        )}
+        {this.state.activePage === "reset password" && (
+          <ResetPassword navigate={this.navigate} />
         )}
       </View>
     );
