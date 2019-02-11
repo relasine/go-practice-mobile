@@ -117,6 +117,7 @@ export default class Signup extends Component {
   render() {
     return (
       <View>
+        <Text style={styles.text}>Create a new account</Text>
         <TextInput
           onChangeText={text => this.handleEmailChange(text)}
           style={styles.input}
@@ -162,6 +163,7 @@ export default class Signup extends Component {
 
 const styles = StyleSheet.create({
   container: {},
+  text: { color: "#d5d7de" },
   input: {
     marginTop: 10,
     width: 200,
@@ -178,8 +180,8 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     borderRadius: 20,
     alignSelf: "center",
-    marginTop: 8,
-    marginBottom: 32
+    marginTop: 0,
+    marginBottom: 44
   },
   signup: {
     fontFamily: "Malayalam Sangam MN",

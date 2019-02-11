@@ -79,9 +79,14 @@ export default class Login extends Component {
     this.props.navigate("signup");
   };
 
+  handleResetPassword = () => {
+    this.props.navigate("reset password");
+  };
+
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.text}>Login to Go Practice</Text>
         <TextInput
           onChangeText={text => this.handleEmailPress(text)}
           style={styles.input}
@@ -102,8 +107,17 @@ export default class Login extends Component {
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
           <Text style={styles.submit}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.handleSignup}>
+        <TouchableOpacity
+          style={styles.signupButton}
+          onPress={this.handleSignup}
+        >
           <Text style={styles.signup}>Signup</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.bigButton}
+          onPress={this.handleResetPassword}
+        >
+          <Text style={styles.signup}>Forgot Password</Text>
         </TouchableOpacity>
       </View>
     );
@@ -119,6 +133,7 @@ const styles = StyleSheet.create({
     height: 26,
     paddingLeft: 8
   },
+  text: { color: "#d5d7de" },
   bottomInput: {
     marginBottom: 20
   },
@@ -128,8 +143,26 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     borderRadius: 20,
     alignSelf: "center",
-    marginTop: 8,
+    marginTop: 0,
     marginBottom: 32
+  },
+  signupButton: {
+    backgroundColor: "#8995b7",
+    width: 100,
+    paddingBottom: 4,
+    borderRadius: 20,
+    alignSelf: "center",
+    marginTop: 24,
+    marginBottom: 32
+  },
+  bigButton: {
+    backgroundColor: "#8995b7",
+    width: 170,
+    paddingBottom: 4,
+    borderRadius: 20,
+    alignSelf: "center",
+    marginTop: 8,
+    marginBottom: 44
   },
   submit: {
     fontFamily: "Malayalam Sangam MN",
