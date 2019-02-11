@@ -85,3 +85,20 @@ export const removeSession = async id => {
 
   return await response.json();
 };
+
+export const resetStudentPassword = async email => {
+  const requestBody = {
+    method: "PATCH",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email })
+  };
+  const response = await fetch(
+    `http://localhost:3000/api/v1/students/resetPassword`,
+    requestBody
+  );
+
+  return await response.json();
+};
