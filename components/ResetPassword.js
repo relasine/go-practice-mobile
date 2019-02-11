@@ -20,7 +20,8 @@ export default class ResetPassword extends Component {
       incomplete: false,
       fetching: false,
       error: false,
-      noMatch: false
+      noMatch: false,
+      success: false
     };
   }
 
@@ -106,7 +107,28 @@ export default class ResetPassword extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Forgot My Password</Text>
+        {!this.state.error &&
+          !this.state.noMatch &&
+          !this.state.fetching &&
+          !this.state.incomplete &&
+          !this.state.success && (
+            <Text style={styles.text}>Forgot My Password</Text>
+          )}
+        {this.state.error && (
+          <Text style={styles.text}>Server error - please try again later</Text>
+        )}
+        {this.state.incomplete && (
+          <Text style={styles.text}>Please enter an email address</Text>
+        )}
+        {this.state.noMatch && (
+          <Text style={styles.text}>Email address does not match any user</Text>
+        )}
+        {this.state.success && (
+          <Text style={styles.text}>Success! Email sent.</Text>
+        )}
+        {this.state.fetching && (
+          <Text style={styles.text}>Checking database...</Text>
+        )}
         <TextInput
           onChangeText={text => this.handleEmailPress(text)}
           style={styles.input}
