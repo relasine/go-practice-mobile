@@ -102,3 +102,20 @@ export const resetStudentPassword = async email => {
 
   return await response.json();
 };
+
+export const changeStudentPassword = async payload => {
+  const requestBody = {
+    method: "PATCH",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  };
+  const response = await fetch(
+    `http://localhost:3000/api/v1/students/changePassword`,
+    requestBody
+  );
+
+  return await response.json();
+};
