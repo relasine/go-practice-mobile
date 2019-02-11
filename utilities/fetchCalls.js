@@ -119,3 +119,22 @@ export const changeStudentPassword = async payload => {
 
   return await response.json();
 };
+
+export const joinClass = async (key, id) => {
+  console.log(key, id);
+  const requestBody = {
+    method: "PATCH",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ key })
+  };
+
+  const response = await fetch(
+    `http://localhost:3000/api/v1/classes/students/${id}`,
+    requestBody
+  );
+
+  return await response.json();
+};
