@@ -69,14 +69,16 @@ export default class ResetPassword extends Component {
         this.setState({
           fetching: false,
           noMatch: true,
-          error: false
+          error: false,
+          success: false
         });
       }
     } catch (error) {
       this.setState({
         error: true,
         fetching: false,
-        noMatch: false
+        noMatch: false,
+        success: false
       });
       console.log(error);
     }
@@ -87,7 +89,8 @@ export default class ResetPassword extends Component {
       incomplete: true,
       fetching: false,
       error: false,
-      noMatch: false
+      noMatch: false,
+      success: false
     });
   };
 
@@ -96,7 +99,8 @@ export default class ResetPassword extends Component {
       incomplete: false,
       fetching: true,
       error: false,
-      noMatch: false
+      noMatch: false,
+      success: false
     });
   };
 
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
   container: {},
   input: {
     marginTop: 10,
-    width: 200,
+    width: 250,
     backgroundColor: "#d5d5d5",
     height: 26,
     paddingLeft: 8

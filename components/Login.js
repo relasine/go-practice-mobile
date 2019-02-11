@@ -20,7 +20,8 @@ export default class Login extends Component {
       password: "",
       incomplete: false,
       fetching: false,
-      error: false
+      error: false,
+      noMatch: false
     };
   }
 
@@ -58,7 +59,10 @@ export default class Login extends Component {
     try {
       const response = await studentLogin(payload);
 
-      console.log(response);
+      if (response === "Email/password do not match our records") {
+        this.setState({ fetching: false, noMatch: true });
+        return;
+      }
 
       this.props.setUser(response);
     } catch (error) {

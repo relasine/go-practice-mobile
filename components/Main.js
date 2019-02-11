@@ -26,7 +26,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.currentPage === "records" && (
+        {this.state.currentPage === "records" && this.props.user && (
           <Records user={this.props.user} updateUser={this.props.updateUser} />
         )}
         {this.state.currentPage === "practice card" && (
@@ -35,7 +35,9 @@ export default class Main extends Component {
             userId={this.props.user.student.id}
           />
         )}
-        {this.state.currentPage === "settings" && <Settings />}
+        {this.state.currentPage === "settings" && (
+          <Settings user={this.props.user} />
+        )}
         <Nav navigate={this.navigate} />
       </View>
     );
