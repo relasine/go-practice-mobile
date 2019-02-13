@@ -214,8 +214,10 @@ export default class Signup extends Component {
         <TouchableOpacity style={styles.button} onPress={this.handleSignup}>
           <Text style={styles.submit}>Signup</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={styles.submit}>Login</Text>
+        <TouchableOpacity onPress={this.handleLogin}>
+          <Text style={styles.login}>
+            Have an account? <Text style={{ fontWeight: "bold" }}>Log in.</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -224,7 +226,7 @@ export default class Signup extends Component {
 
 const styles = StyleSheet.create({
   container: {},
-  text: { color: "#d5d7de" },
+  text: { color: "#d5d5d5" },
   input: {
     marginTop: 10,
     width: 200,
@@ -239,7 +241,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#8995b7",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 0,
     marginBottom: 44
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   },
@@ -256,8 +257,15 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
+    paddingTop: 8
+  },
+  login: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 14,
+    textAlign: "center",
+    color: "#d5d5d5",
     paddingTop: 8
   }
 });
