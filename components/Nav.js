@@ -45,7 +45,7 @@ const width = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#3e496c",
+    backgroundColor: "#333",
     height: 70,
     flexDirection: "row",
     justifyContent: "space-around",
