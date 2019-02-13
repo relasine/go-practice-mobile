@@ -29,12 +29,7 @@ export default class PracticeSectionDetails extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 20,
-    backgroundColor: "#4e577a",
-    shadowColor: "#333",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
+    backgroundColor: "#232323",
     padding: 16,
     marginBottom: 16
   },
