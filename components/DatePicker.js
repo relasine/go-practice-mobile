@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontFamily: "Malayalam Sangam MN",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     textAlign: "center",
     fontWeight: "bold"
   }
