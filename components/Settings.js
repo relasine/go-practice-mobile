@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, Text, TextInput, Image, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet, View } from "react-native";
 
 import ChangePassword from "./ChangePassword";
 import JoinClass from "./JoinClass";
@@ -65,19 +65,21 @@ export default class Settings extends Component {
     return (
       <ScrollView>
         <Text style={styles.headerText}>Settings</Text>
-        {!this.props.user.student.class_id ? (
-          <JoinClass
-            updateUser={this.addToClassInState}
-            id={this.props.user.student.id}
-          />
-        ) : (
-          <ClassInfo
-            updateUser={this.removeFromClassInState}
-            data={this.state.klass}
-            id={this.props.user.student.id}
-          />
-        )}
-        <ChangePassword user={this.props.user} />
+        <View style={styles.container}>
+          {!this.props.user.student.class_id ? (
+            <JoinClass
+              updateUser={this.addToClassInState}
+              id={this.props.user.student.id}
+            />
+          ) : (
+            <ClassInfo
+              updateUser={this.removeFromClassInState}
+              data={this.state.klass}
+              id={this.props.user.student.id}
+            />
+          )}
+          <ChangePassword user={this.props.user} />
+        </View>
       </ScrollView>
     );
   }
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
   headerText: {
     fontSize: 25,
@@ -95,6 +97,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     textAlign: "center",
     fontFamily: "Malayalam Sangam MN",
-    color: "#d5d7de"
+    color: "#d5d5d5"
   }
 });
