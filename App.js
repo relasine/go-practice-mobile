@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 import Landing from "./components/Landing";
 import PracticeCard from "./components/PracticeCard";
@@ -34,12 +34,16 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground
+        style={styles.container}
+        source={require("./assets/clarinet.jpg")}
+        resizeMode="cover"
+      >
         {!this.state.user && <Landing setUser={this.setUser} />}
         {this.state.user && (
           <Main updateUser={this.updateUser} user={this.state.user} />
         )}
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -47,7 +51,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2c3753",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#000"
   }
 });
