@@ -87,7 +87,7 @@ export default class PracticeRecordDetails extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#2c3753",
+    backgroundColor: "#191919",
     flex: 1,
     padding: 30,
     paddingTop: 40

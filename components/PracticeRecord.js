@@ -48,16 +48,11 @@ export default class PracticeRecord extends Component {
 const styles = StyleSheet.create({
   container: {
     margin: 16,
-    borderRadius: 20,
-    backgroundColor: "#4e577a",
-    shadowColor: "#333",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
+    backgroundColor: "#232323",
     padding: 8
   },
   text: {
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontSize: 16,
     padding: 4
   },
