@@ -39,17 +39,13 @@ const styles = StyleSheet.create({
   container: {
     margin: 16,
     borderRadius: 20,
-    backgroundColor: "#4e577a",
-    shadowColor: "#333",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5
+    backgroundColor: "#232323"
   },
   title: {
     fontFamily: "Malayalam Sangam MN",
     fontSize: 20,
     fontWeight: "bold",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
@@ -60,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 8,
     marginBottom: 8,
-    color: "#d5d7de",
+    color: "#d5d5d5",
     paddingLeft: 16,
     paddingRight: 16
   },
@@ -69,19 +65,19 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     marginBottom: 8,
-    color: "#8995b7",
+    color: "#c1c1c1",
     fontSize: 16
   },
   delete: {
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 220,
     paddingBottom: 4,
     borderRadius: 20,
