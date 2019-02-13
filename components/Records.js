@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     textAlign: "center",
     fontFamily: "Malayalam Sangam MN",
-    color: "#d5d7de"
+    color: "#d5d5d5"
   }
 });
