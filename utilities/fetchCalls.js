@@ -138,3 +138,26 @@ export const joinClass = async (key, id) => {
 
   return await response.json();
 };
+
+export const fetchClass = async id => {
+  const response = await fetch(`http://localhost:3000/api/v1/classes/${id}`);
+
+  return await response.json();
+};
+
+export const removeFromClass = async id => {
+  const requestBody = {
+    method: "PATCH",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const response = await fetch(
+    `http://localhost:3000/api/v1/classes/students/${id}/remove`,
+    requestBody
+  );
+
+  return await response.json();
+};

@@ -61,7 +61,7 @@ export default class JoinClass extends Component {
         this.setState({
           status: "success"
         });
-        return;
+        this.props.updateUser();
       } else if (response === "Class not found") {
         this.setState({
           status: "no match"

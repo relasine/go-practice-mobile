@@ -36,7 +36,7 @@ export default class Main extends Component {
           />
         )}
         {this.state.currentPage === "settings" && (
-          <Settings user={this.props.user} />
+          <Settings updateUser={this.props.updateUser} user={this.props.user} />
         )}
         <Nav navigate={this.navigate} />
       </View>

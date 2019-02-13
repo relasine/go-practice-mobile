@@ -19,7 +19,10 @@ export default class Signup extends Component {
       password: "",
       confirmPassword: "",
       error: false,
-      fetching: false
+      fetching: false,
+      badEmail: false,
+      noMatch: false,
+      success: false
     };
   }
 
@@ -55,17 +58,43 @@ export default class Signup extends Component {
     this.setState({ confirmPassword, error: false });
   };
 
+  setBadEmail = () => {
+    this.setState({
+      fetching: false,
+      error: false,
+      noMatch: false,
+      badEmail: true,
+      success: false
+    });
+  };
+
   setFetching = () => {
     this.setState({
       fetching: true,
-      error: false
+      error: false,
+      noMatch: false,
+      badEmail: false,
+      success: false
     });
   };
 
   setError = () => {
     this.setState({
       error: true,
-      fetching: false
+      fetching: false,
+      noMatch: false,
+      badEmail: false,
+      success: false
+    });
+  };
+
+  setNoMatch = () => {
+    this.setState({
+      noMatch: true,
+      fetching: false,
+      error: false,
+      badEmail: false,
+      success: false
     });
   };
 
@@ -77,7 +106,7 @@ export default class Signup extends Component {
 
     if (password !== confirmPassword) {
       this.setState({
-        notMatching: true
+        noMatch: true
       });
       return;
     }
@@ -96,6 +125,17 @@ export default class Signup extends Component {
     try {
       const response = await studentSignup(payload);
 
+      if (response === "User already exists") {
+        this.setState({
+          error: false,
+          fetching: false,
+          badEmail: true,
+          noMatch: false,
+          success: false
+        });
+
+        return;
+      }
       console.log(response);
       this.setState({
         email: "",
@@ -103,10 +143,19 @@ export default class Signup extends Component {
         password: "",
         confirmPassword: "",
         error: false,
-        fetching: false
+        fetching: false,
+        badEmail: false,
+        noMatch: false,
+        success: true
       });
     } catch (error) {
-      this.setState(error);
+      this.setState({
+        error: true,
+        fetching: false,
+        badEmail: false,
+        noMatch: false,
+        success: false
+      });
     }
   };
 
@@ -115,9 +164,21 @@ export default class Signup extends Component {
   };
 
   render() {
+    const { noMatch, error, fetching, badEmail, success } = this.state;
     return (
       <View>
-        <Text style={styles.text}>Create a new account</Text>
+        {!noMatch && !error && !fetching && !badEmail && !success && (
+          <Text style={styles.text}>Create a new account</Text>
+        )}
+        {noMatch && <Text style={styles.text}>Passwords do no match</Text>}
+        {error && (
+          <Text style={styles.text}>Server error - try again later...</Text>
+        )}
+        {fetching && <Text style={styles.text}>Signing you up...</Text>}
+        {badEmail && (
+          <Text style={styles.text}>Email address already in use</Text>
+        )}
+        {success && <Text style={styles.text}>Created new account</Text>}
         <TextInput
           onChangeText={text => this.handleEmailChange(text)}
           style={styles.input}

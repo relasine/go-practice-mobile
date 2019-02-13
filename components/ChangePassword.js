@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  text: { color: "#d5d7de" },
+  text: { color: "#d5d7de", fontWeight: "bold" },
   input: {
     marginTop: 10,
     width: 200,

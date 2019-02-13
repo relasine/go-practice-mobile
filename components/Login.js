@@ -72,7 +72,7 @@ export default class Login extends Component {
   };
 
   setIncomplete = () => {
-    this.setState({ incomplete: true, error: false });
+    this.setState({ incomplete: true, error: false, noMatch: false });
   };
 
   setFetching = () => {
@@ -88,9 +88,22 @@ export default class Login extends Component {
   };
 
   render() {
+    const { fetching, incomplete, error, noMatch } = this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Login to Go Practice</Text>
+        {!fetching && !incomplete && !error && !noMatch && (
+          <Text style={styles.text}>Login to Go Practice</Text>
+        )}
+        {fetching && <Text style={styles.text}>Logging you in...</Text>}
+        {incomplete && (
+          <Text style={styles.text}>Fill out both fields to login...</Text>
+        )}
+        {error && (
+          <Text style={styles.text}>Server error - try again later</Text>
+        )}
+        {noMatch && (
+          <Text style={styles.text}>Email/Password do not match</Text>
+        )}
         <TextInput
           onChangeText={text => this.handleEmailPress(text)}
           style={styles.input}

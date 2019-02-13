@@ -14,21 +14,14 @@ import { addPracticeCard } from "../utilities/fetchCalls";
 import NewSection from "./NewSection";
 import DatePicker from "./DatePicker";
 import Section from "./Section";
+import IncompleteCard from "./IncompleteCard";
 
 export default class PracticeCard extends Component {
   constructor() {
     super();
 
     this.state = {
-      sections: [
-        {
-          id: 1549427088449,
-          piece: "#42 Jim Along Josie",
-          section: "First half",
-          skills: "Eight Note Rhythm",
-          length: "12"
-        }
-      ],
+      sections: [],
       nextGoal: "",
       date: new Date(),
       fetching: false,
@@ -116,6 +109,15 @@ export default class PracticeCard extends Component {
     });
   };
 
+  closeModal = () => {
+    this.setState({
+      error: false,
+      missingFields: false,
+      success: false,
+      fetching: false
+    });
+  };
+
   render() {
     const totalTime = this.state.sections.reduce((sum, section) => {
       return sum + parseInt(section.length);
@@ -133,6 +135,10 @@ export default class PracticeCard extends Component {
 
     return (
       <ScrollView style={styles.container}>
+        <IncompleteCard
+          modalVisible={this.state.missingFields}
+          closeModal={this.closeModal}
+        />
         <View style={styles.practiceCardTop}>
           <Text style={styles.headerText}>New Practice Record</Text>
           <Text style={styles.text}>Total Time - {totalTime} minutes</Text>

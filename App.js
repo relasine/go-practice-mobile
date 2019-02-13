@@ -22,6 +22,7 @@ export default class App extends React.Component {
       const user = await fetchStudentData(this.state.user.student.id);
 
       this.setState({ user, error: false });
+      return;
     } catch (error) {
       this.setState({ error: true });
       console.log(error);
