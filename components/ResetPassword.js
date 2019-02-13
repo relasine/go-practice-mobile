@@ -144,8 +144,8 @@ export default class ResetPassword extends Component {
         <TouchableOpacity style={styles.button} onPress={this.handleReset}>
           <Text style={styles.submit}>Reset Password</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={styles.login}>Login</Text>
+        <TouchableOpacity onPress={this.handleLogin}>
+          <Text style={styles.login}>Back to log in</Text>
         </TouchableOpacity>
       </View>
     );
@@ -165,13 +165,12 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   text: {
-    color: "#d5d7de"
+    color: "#d5d5d5"
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 170,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 16,
     marginBottom: 32
@@ -180,16 +179,15 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   },
   login: {
     fontFamily: "Malayalam Sangam MN",
-    fontSize: 18,
+    fontSize: 14,
     textAlign: "center",
-    color: "#d5d7de",
-    fontWeight: "bold",
+    color: "#d5d5d5",
     paddingTop: 8
   }
 });
