@@ -92,7 +92,7 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
         {!fetching && !incomplete && !error && !noMatch && (
-          <Text style={styles.text}>Login to Go Practice</Text>
+          <Text style={styles.text}>Log in to Go Practice</Text>
         )}
         {fetching && <Text style={styles.text}>Logging you in...</Text>}
         {incomplete && (
@@ -122,19 +122,18 @@ export default class Login extends Component {
           autoCapitalize="none"
         />
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={styles.submit}>Login</Text>
+          <Text style={styles.submit}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.signupButton}
-          onPress={this.handleSignup}
-        >
-          <Text style={styles.signup}>Signup</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bigButton}
+          style={styles.forgotButton}
           onPress={this.handleResetPassword}
         >
-          <Text style={styles.signup}>Forgot Password</Text>
+          <Text style={styles.forgot}>Forgot password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.handleSignup}>
+          <Text style={styles.signup}>
+            Don't have an account? <Text style={styles.bold}>Sign up.</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -150,33 +149,30 @@ const styles = StyleSheet.create({
     height: 26,
     paddingLeft: 8
   },
-  text: { color: "#d5d7de" },
+  text: { color: "#d5d5d5" },
   bottomInput: {
     marginBottom: 20
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#d5d5d5",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 0,
-    marginBottom: 32
+    marginBottom: 16
   },
   signupButton: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 24,
     marginBottom: 32
   },
   bigButton: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 170,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 8,
     marginBottom: 44
@@ -185,16 +181,28 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   },
   signup: {
     fontFamily: "Malayalam Sangam MN",
-    fontSize: 18,
+    fontSize: 14,
     textAlign: "center",
-    color: "#d5d7de",
-    fontWeight: "bold",
+    color: "#d5d5d5",
     paddingTop: 8
+  },
+  forgot: {
+    fontFamily: "Malayalam Sangam MN",
+    fontSize: 14,
+    textAlign: "center",
+    color: "#d5d5d5",
+    paddingTop: 8
+  },
+  bold: {
+    fontWeight: "bold"
+  },
+  forgotButton: {
+    marginBottom: 48
   }
 });
