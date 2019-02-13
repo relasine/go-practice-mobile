@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 
+import ConfirmLeaveClass from "./ConfirmLeaveClass";
+
 import { removeFromClass } from "../utilities/fetchCalls";
 
 export default class ClassInfo extends Component {
@@ -8,9 +10,16 @@ export default class ClassInfo extends Component {
     super();
 
     this.state = {
-      status: ""
+      status: "",
+      showModal: false
     };
   }
+
+  showModal = () => {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  };
 
   removeFromClass = async () => {
     this.setFetching();
@@ -36,6 +45,11 @@ export default class ClassInfo extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <ConfirmLeaveClass
+          modalVisible={this.state.showModal}
+          cancel={this.showModal}
+          leaveClass={this.removeFromClass}
+        />
         {this.props.data && (
           <Text style={styles.text}>
             <Text style={{ fontWeight: "bold" }}>Class:</Text>{" "}
@@ -51,7 +65,7 @@ export default class ClassInfo extends Component {
         {!this.props.data && (
           <Text style={styles.text}>Loading class information...</Text>
         )}
-        <TouchableOpacity onPress={this.removeFromClass} style={styles.button}>
+        <TouchableOpacity onPress={this.showModal} style={styles.button}>
           <Text style={styles.buttonText}>Leave Class</Text>
         </TouchableOpacity>
       </View>
@@ -60,15 +74,18 @@ export default class ClassInfo extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: 48,
+    marginTop: 24
+  },
   text: {
-    color: "#d5d7de",
+    color: "#d5d5d5",
     textAlign: "center",
     marginBottom: 8,
     fontSize: 18
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 140,
     paddingBottom: 4,
     borderRadius: 20,
@@ -80,7 +97,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   }
