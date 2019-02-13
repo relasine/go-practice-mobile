@@ -15,6 +15,8 @@ import NewSection from "./NewSection";
 import DatePicker from "./DatePicker";
 import Section from "./Section";
 import IncompleteCard from "./IncompleteCard";
+import SuccessCard from "./SuccessCard";
+import ErrorCard from "./ErrorCard";
 
 export default class PracticeCard extends Component {
   constructor() {
@@ -27,7 +29,8 @@ export default class PracticeCard extends Component {
       fetching: false,
       missingFields: false,
       response: undefined,
-      success: false
+      success: false,
+      error: false
     };
   }
 
@@ -91,7 +94,7 @@ export default class PracticeCard extends Component {
       this.props.updateUser();
     } catch (error) {
       this.setState({
-        error
+        error: true
       });
     }
   };
@@ -139,12 +142,20 @@ export default class PracticeCard extends Component {
           modalVisible={this.state.missingFields}
           closeModal={this.closeModal}
         />
+        <SuccessCard
+          modalVisible={this.state.success}
+          closeModal={this.closeModal}
+        />
+        <ErrorCard
+          modalVisible={this.state.error}
+          closeModal={this.closeModal}
+        />
         <View style={styles.practiceCardTop}>
           <Text style={styles.headerText}>New Practice Record</Text>
           <Text style={styles.text}>Total Time - {totalTime} minutes</Text>
           <DatePicker setDate={this.setDate} />
           <TextInput
-            placeholderTextColor="#8995b7"
+            placeholderTextColor="#707070"
             onChangeText={text => this.handleGoalPress(text)}
             style={styles.input}
             placeholder="Practice goals"
@@ -176,7 +187,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     textAlign: "center",
     fontFamily: "Malayalam Sangam MN",
-    color: "#d5d7de"
+    color: "#d5d5d5"
   },
   practiceCardTop: {
     padding: 16
@@ -184,32 +195,32 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 24,
     fontSize: 20,
-    backgroundColor: "#3e496c",
+    backgroundColor: "#333",
     padding: 4,
-    color: "#d5d7de"
+    color: "#d5d5d5"
   },
   text: {
     fontSize: 20,
     fontFamily: "Malayalam Sangam MN",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     textAlign: "center"
   },
   sectionHeader: {
     textAlign: "center",
     fontWeight: "bold",
     paddingTop: 16,
-    color: "#d5d7de"
+    color: "#d5d5d5"
   },
   submit: {
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 220,
     paddingBottom: 4,
     borderRadius: 20,
