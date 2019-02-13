@@ -97,21 +97,21 @@ export default class NewSection extends Component {
           placeholder="song practiced"
           onChangeText={text => this.handlePiecePress(text)}
           value={this.state.piece}
-          placeholderTextColor="#8995b7"
+          placeholderTextColor="#707070"
         />
         <TextInput
           style={styles.input}
           placeholder="section worked on"
           onChangeText={text => this.handleSectionPress(text)}
           value={this.state.section}
-          placeholderTextColor="#8995b7"
+          placeholderTextColor="#707070"
         />
         <TextInput
           style={styles.input}
           placeholder="skills focused on"
           onChangeText={text => this.handleSkillsPress(text)}
           value={this.state.skills}
-          placeholderTextColor="#8995b7"
+          placeholderTextColor="#707070"
         />
         <TextInput
           style={styles.input}
@@ -119,7 +119,7 @@ export default class NewSection extends Component {
           onChangeText={text => this.handlelengthPress(text)}
           value={this.state.length.toString()}
           keyboardType="number-pad"
-          placeholderTextColor="#8995b7"
+          placeholderTextColor="#707070"
         />
 
         <TouchableOpacity style={styles.button} onPress={this.submitSection}>
@@ -134,36 +134,32 @@ const width = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#3e496c",
+    backgroundColor: "rgba(0,0,0, 0.4)",
     width: width,
-    padding: 16,
-    shadowColor: "#333",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5
+    padding: 16
   },
   input: {
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontSize: 20,
     marginTop: 8,
-    backgroundColor: "#2c3753",
+    backgroundColor: "#333",
     padding: 4
   },
   lengthWrapper: {
     paddingTop: 8
   },
   lengthLabel: {
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontSize: 20,
     fontWeight: "bold"
   },
   length: {
-    color: "#d5d7de",
+    color: "#848484",
     fontSize: 20,
     paddingBottom: 8
   },
   newSectionHeader: {
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontSize: 20,
     fontWeight: "bold"
   },
@@ -171,12 +167,12 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d7de",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   },
   button: {
-    backgroundColor: "#8995b7",
+    backgroundColor: "#333",
     width: 220,
     paddingBottom: 4,
     borderRadius: 20,
