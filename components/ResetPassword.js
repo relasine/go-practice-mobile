@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     color: "#d5d5d5"
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#d5d5d5",
     width: 170,
     paddingBottom: 4,
     alignSelf: "center",
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   },
