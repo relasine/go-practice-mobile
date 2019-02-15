@@ -215,15 +215,14 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#d5d5d5",
     width: 220,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center"
   }
 });
