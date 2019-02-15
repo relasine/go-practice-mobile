@@ -58,7 +58,7 @@ export default class ChangePassword extends Component {
     try {
       const response = await changeStudentPassword(payload);
 
-      if (response === "Incorrect Password") {
+      if (response === "Incorrect password") {
         this.setState({
           incorrectPassword: true,
           error: false,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  text: { color: "#d5d7de", fontWeight: "bold" },
+  text: { color: "#d5d7de", fontWeight: "bold", fontSize: 18 },
   input: {
     marginTop: 10,
     width: 200,
@@ -149,10 +149,9 @@ const styles = StyleSheet.create({
     paddingLeft: 8
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#d5d5d5",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 16,
     marginBottom: 32
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   }
