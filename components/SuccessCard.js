@@ -13,7 +13,7 @@ export default class SuccessCard extends Component {
         >
           <View
             style={{
-              backgroundColor: "#2c3753",
+              backgroundColor: "#232323",
               height: "100%",
               alignItems: "center",
               justifyContent: "center"
@@ -47,10 +47,9 @@ const styles = StyleSheet.create({
     color: "#d5d5d5"
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#f2f2f2",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 0,
     marginBottom: 32
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   }
