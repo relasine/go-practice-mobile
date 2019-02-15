@@ -28,7 +28,7 @@ export default class PracticeRecord extends Component {
         >
           <Text style={styles.text}>
             <Text style={styles.label}>Date: </Text>
-            {months[parseInt(splitDate[1]) - 1]} {parseInt(splitDate[2]) + 1},{" "}
+            {months[parseInt(splitDate[1]) - 1]} {parseInt(splitDate[2])},{" "}
             {splitDate[0]}
           </Text>
           <Text style={styles.text}>
