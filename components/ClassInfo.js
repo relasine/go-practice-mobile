@@ -85,10 +85,9 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#d5d5d5",
     width: 140,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 0,
     marginBottom: 48
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   }
