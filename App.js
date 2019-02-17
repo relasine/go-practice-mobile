@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 import Landing from "./components/Landing";
-import PracticeCard from "./components/PracticeCard";
 import Main from "./components/Main";
 
 import { fetchStudentData } from "./utilities/fetchCalls";
