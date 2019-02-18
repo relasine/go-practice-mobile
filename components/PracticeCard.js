@@ -9,6 +9,8 @@ import {
   TouchableOpacity
 } from "react-native";
 
+import SessionExpired from "./SessionExpired";
+
 import { addPracticeCard } from "../utilities/fetchCalls";
 
 import NewSection from "./NewSection";
@@ -30,7 +32,8 @@ export default class PracticeCard extends Component {
       missingFields: false,
       response: undefined,
       success: false,
-      error: false
+      error: false,
+      sessionExpired: false
     };
   }
 
@@ -79,7 +82,18 @@ export default class PracticeCard extends Component {
     };
 
     try {
-      const response = await addPracticeCard(payload, this.props.userId);
+      const response = await addPracticeCard(
+        payload,
+        this.props.userId,
+        this.props.webtoken
+      );
+
+      if (response === "Session expired") {
+        this.setState({
+          sessionExpired: true
+        });
+        return;
+      }
 
       this.setState({
         sections: [],
@@ -138,6 +152,10 @@ export default class PracticeCard extends Component {
 
     return (
       <ScrollView style={styles.container}>
+        <SessionExpired
+          visible={this.state.sessionExpired}
+          logout={this.props.logout}
+        />
         <IncompleteCard
           modalVisible={this.state.missingFields}
           closeModal={this.closeModal}
