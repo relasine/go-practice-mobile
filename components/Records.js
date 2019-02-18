@@ -5,6 +5,7 @@ import { getSessionDetails, removeSession } from "../utilities/fetchCalls";
 
 import PracticeRecord from "./PracticeRecord";
 import PracticeRecordDetails from "./PracticeRecordDetails";
+import SessionExpired from "./SessionExpired";
 
 export default class Records extends Component {
   constructor() {
@@ -12,7 +13,8 @@ export default class Records extends Component {
 
     this.state = {
       selectedRecord: undefined,
-      fetching: false
+      fetching: false,
+      sessionExpired: false
     };
   }
 
@@ -20,7 +22,14 @@ export default class Records extends Component {
     this.setFetching();
 
     try {
-      const sections = await getSessionDetails(session.id);
+      const sections = await getSessionDetails(session.id, this.props.webtoken);
+
+      if (sections === "Session expired") {
+        this.setState({
+          sessionExpired: true
+        });
+        return;
+      }
 
       const selectedRecord = { sections, session };
 
@@ -39,7 +48,7 @@ export default class Records extends Component {
 
   deletePracticeSession = async id => {
     try {
-      const response = await removeSession(id);
+      const response = await removeSession(id, this.props.webtoken);
 
       this.props.updateUser();
       this.clearModal();
@@ -84,6 +93,10 @@ export default class Records extends Component {
 
     return (
       <ScrollView style={styles.container}>
+        <SessionExpired
+          visible={this.state.sessionExpired}
+          logout={this.props.logout}
+        />
         <Text style={styles.headerText}>Practice Records</Text>
         {practiceRecords}
         {this.state.selectedRecord && (
