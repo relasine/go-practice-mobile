@@ -38,19 +38,32 @@ export const studentSignup = async payload => {
   return data;
 };
 
-export const fetchStudentData = async id => {
-  const response = await fetch(`http://localhost:3000/api/v1/students/${id}`);
+export const fetchStudentData = async (id, webtoken) => {
+  const requestBody = {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: webtoken
+    }
+  };
+
+  const response = await fetch(
+    `http://localhost:3000/api/v1/students/${id}`,
+    requestBody
+  );
 
   return await response.json();
 };
 
-export const addPracticeCard = async (payload, id) => {
+export const addPracticeCard = async (payload, id, webtoken) => {
   const requestBody = {
     method: "POST",
     mode: "cors",
     body: JSON.stringify(payload),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: webtoken
     }
   };
 
@@ -62,20 +75,31 @@ export const addPracticeCard = async (payload, id) => {
   return await response.json();
 };
 
-export const getSessionDetails = async id => {
+export const getSessionDetails = async (id, webtoken) => {
+  const requestBody = {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: webtoken
+    }
+  };
+
   const response = await fetch(
-    `http://localhost:3000/api/v1/practiceSessions/${id}/sections`
+    `http://localhost:3000/api/v1/practiceSessions/${id}/sections`,
+    requestBody
   );
 
   return await response.json();
 };
 
-export const removeSession = async id => {
+export const removeSession = async (id, webtoken) => {
   const requestBody = {
     method: "DELETE",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: webtoken
     }
   };
   const response = await fetch(
@@ -103,12 +127,13 @@ export const resetStudentPassword = async email => {
   return await response.json();
 };
 
-export const changeStudentPassword = async payload => {
+export const changeStudentPassword = async (payload, webtoken) => {
   const requestBody = {
     method: "PATCH",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: webtoken
     },
     body: JSON.stringify(payload)
   };
@@ -120,13 +145,13 @@ export const changeStudentPassword = async payload => {
   return await response.json();
 };
 
-export const joinClass = async (key, id) => {
-  console.log(key, id);
+export const joinClass = async (key, id, webtoken) => {
   const requestBody = {
     method: "PATCH",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: webtoken
     },
     body: JSON.stringify({ key })
   };
@@ -139,18 +164,31 @@ export const joinClass = async (key, id) => {
   return await response.json();
 };
 
-export const fetchClass = async id => {
-  const response = await fetch(`http://localhost:3000/api/v1/classes/${id}`);
+export const fetchClass = async (id, webtoken) => {
+  const requestBody = {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: webtoken
+    }
+  };
+
+  const response = await fetch(
+    `http://localhost:3000/api/v1/classes/${id}`,
+    requestBody
+  );
 
   return await response.json();
 };
 
-export const removeFromClass = async id => {
+export const removeFromClass = async (id, webtoken) => {
   const requestBody = {
     method: "PATCH",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: webtoken
     }
   };
 
