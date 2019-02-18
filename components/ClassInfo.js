@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 
 import ConfirmLeaveClass from "./ConfirmLeaveClass";
+import SessionExpired from "./SessionExpired";
 
 import { removeFromClass } from "../utilities/fetchCalls";
 
@@ -11,7 +12,8 @@ export default class ClassInfo extends Component {
 
     this.state = {
       status: "",
-      showModal: false
+      showModal: false,
+      sessionExpired: false
     };
   }
 
@@ -25,8 +27,20 @@ export default class ClassInfo extends Component {
     this.setFetching();
 
     try {
-      const response = await removeFromClass(this.props.id);
-      console.log(response);
+      const response = await removeFromClass(
+        this.props.id,
+        this.props.webtoken
+      );
+
+      if (response === "Session expired") {
+        console.log("expired - classinfoma");
+        this.setState({
+          sessionExpired: true,
+          showModal: false
+        });
+        return;
+      }
+
       if (response === "Successfully removed student from class") {
         this.props.updateUser();
       }
@@ -45,6 +59,10 @@ export default class ClassInfo extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <SessionExpired
+          visible={this.state.sessionExpired}
+          logout={this.props.logout}
+        />
         <ConfirmLeaveClass
           modalVisible={this.state.showModal}
           cancel={this.showModal}
