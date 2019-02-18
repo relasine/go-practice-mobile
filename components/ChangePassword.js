@@ -7,6 +7,8 @@ import {
   TouchableOpacity
 } from "react-native";
 
+import SessionExpired from "./SessionExpired";
+
 import { changeStudentPassword } from "../utilities/fetchCalls";
 
 export default class ChangePassword extends Component {
@@ -21,7 +23,8 @@ export default class ChangePassword extends Component {
       noMatch: false,
       success: false,
       fetching: false,
-      incorrectPassword: false
+      incorrectPassword: false,
+      sessionExpired: false
     };
   }
 
@@ -56,7 +59,10 @@ export default class ChangePassword extends Component {
       id: this.props.user.student.id
     };
     try {
-      const response = await changeStudentPassword(payload);
+      const response = await changeStudentPassword(
+        payload,
+        this.props.user.student.webtoken
+      );
 
       if (response === "Incorrect password") {
         this.setState({
@@ -66,13 +72,21 @@ export default class ChangePassword extends Component {
           success: false,
           fetching: false
         });
+      } else if (response === "Session expired") {
+        this.setState({
+          sessionExpired: true
+        });
+        return;
       } else if (response === "Successfully changed user password") {
         this.setState({
           incorrectPassword: false,
           error: false,
           noMatch: false,
           success: true,
-          fetching: false
+          fetching: false,
+          oldPassword: "",
+          newPassword: "",
+          confirmNewPassword: ""
         });
       }
 
@@ -85,6 +99,10 @@ export default class ChangePassword extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <SessionExpired
+          logout={this.props.logout}
+          visible={this.state.sessionExpired}
+        />
         {!this.state.incorrectPassword &&
           !this.state.error &&
           !this.state.noMatch &&
