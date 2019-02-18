@@ -12,13 +12,24 @@ export default class App extends React.Component {
 
     this.state = {
       user: undefined,
-      error: true
+      error: false
     };
   }
 
+  logout = () => {
+    this.setState({
+      user: undefined,
+      error: false
+    });
+  };
+
   updateUser = async () => {
+    console.log("fires");
     try {
-      const user = await fetchStudentData(this.state.user.student.id);
+      const user = await fetchStudentData(
+        this.state.user.student.id,
+        this.state.user.student.webtoken
+      );
 
       this.setState({ user, error: false });
       return;
@@ -28,9 +39,10 @@ export default class App extends React.Component {
     }
   };
 
-  setUser = user => {
-    this.setState({ user });
+  setUser = (user, webtoken) => {
+    this.setState({ user, webtoken });
   };
+
   render() {
     return (
       <ImageBackground
@@ -40,7 +52,11 @@ export default class App extends React.Component {
       >
         {!this.state.user && <Landing setUser={this.setUser} />}
         {this.state.user && (
-          <Main updateUser={this.updateUser} user={this.state.user} />
+          <Main
+            updateUser={this.updateUser}
+            user={this.state.user}
+            logout={this.logout}
+          />
         )}
       </ImageBackground>
     );
