@@ -9,7 +9,7 @@ export default class SessionExpired extends Component {
           style={styles.modal}
           animationType="slide"
           transparent={false}
-          visible={this.props.modalVisible}
+          visible={this.props.visible}
         >
           <View
             style={{
@@ -46,10 +46,9 @@ const styles = StyleSheet.create({
     color: "#d5d5d5"
   },
   button: {
-    backgroundColor: "#d5d5d5",
+    backgroundColor: "#333",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 0,
     marginBottom: 32
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#333",
+    color: "#d5d5d5",
     fontWeight: "bold",
     paddingTop: 8
   }
