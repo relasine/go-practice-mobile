@@ -7,6 +7,8 @@ import {
   TouchableOpacity
 } from "react-native";
 
+import SessionExpired from "./SessionExpired";
+
 import { joinClass } from "../utilities/fetchCalls";
 
 export default class JoinClass extends Component {
@@ -15,7 +17,8 @@ export default class JoinClass extends Component {
 
     this.state = {
       status: "entry",
-      key: ""
+      key: "",
+      sessionExpired: false
     };
   }
 
@@ -55,7 +58,19 @@ export default class JoinClass extends Component {
     }
 
     try {
-      const response = await joinClass(this.state.key, this.props.id);
+      const response = await joinClass(
+        this.state.key,
+        this.props.id,
+        this.props.webtoken
+      );
+
+      if (response === "Session expired") {
+        console.log("session expired - join");
+        this.setState({
+          sessionExpired: true
+        });
+        return;
+      }
 
       if (response === "Updated student class") {
         this.setState({
@@ -76,6 +91,10 @@ export default class JoinClass extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <SessionExpired
+          visible={this.state.sessionExpired}
+          logout={this.props.logout}
+        />
         {this.state.status === "entry" && (
           <Text style={styles.text}>Enter a class key</Text>
         )}
@@ -123,10 +142,9 @@ const styles = StyleSheet.create({
     paddingLeft: 8
   },
   button: {
-    backgroundColor: "#333",
+    backgroundColor: "#d5d5d5",
     width: 100,
     paddingBottom: 4,
-    borderRadius: 20,
     alignSelf: "center",
     marginTop: 16,
     marginBottom: 32
@@ -135,7 +153,7 @@ const styles = StyleSheet.create({
     fontFamily: "Malayalam Sangam MN",
     fontSize: 18,
     textAlign: "center",
-    color: "#d5d5d5",
+    color: "#333",
     fontWeight: "bold",
     paddingTop: 8
   }
